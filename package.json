@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
-    "serve": "json-server db.json",
-    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
     "cypress": "cypress open",
-    "cypress:all": "cypress run"
+    "cypress:all": "cypress run",
+    "cypress:navigation": "cypress run --spec 'cypress/integration/navigateHeader.spec.js'",
+    "cypress:news": "cypress run --spec 'cypress/integration/news.spec.js'",
+    "cypress:signUp": "cypress run --spec 'cypress/integration/signUp.spec.js'"
   },
   "keywords": [],
   "author": "",
