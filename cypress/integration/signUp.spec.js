@@ -1,5 +1,5 @@
-require('dotenv').config()
-
+var faker = require('faker')
+const Sign_Up = require('../fixtures/pages/signUpPage')
 describe('Signup page', () => {
 
     beforeEach(() => {
@@ -16,60 +16,60 @@ describe('Signup page', () => {
     })
 
     it('requires a valid email address', () => { 
-        cy.get('input[name="email"]').type(Cypress.env('invalidEmail'))
-        cy.get('button[class="cta-1"]').dblclick()
-        cy.get('span[class="error"]').contains('The email you have entered is not valid').should('be.visible')
+        cy.get(Sign_Up.emailField).type(Cypress.env('invalidEmail'))
+        cy.get(Sign_Up.submitButton).dblclick()
+        cy.get(Sign_Up.errorMessage).contains('The email you have entered is not valid').should('be.visible')
     })
 
     it('validates that the passwords entered must match', () => {
-        cy.get('input[name="email"]').type(faker.internet.email())
-        cy.get('input[name="password"]').type(Cypress.env('validPassword'))
-        cy.get('input[name="confirmPassword"]').type(Cypress.env('invalidPassword'))
-        cy.get('button[class="cta-1"]').click()
-        cy.get('span[class="error"]').contains('Passwords do not match').should('be.visible')
+        cy.get(Sign_Up.emailField).type(faker.internet.email())
+        cy.get(Sign_Up.passwordField).type(Cypress.env('validPassword'))
+        cy.get(Sign_Up.confirmPasswordField).type(Cypress.env('invalidPassword'))
+        cy.get(Sign_Up.submitButton).click()
+        cy.get(Sign_Up.errorMessage).contains('Passwords do not match').should('be.visible')
     })
 
-    it('navigates to the user details page if the data in the form is correct', () => {
-        cy.get('input[name="email"]').type(faker.internet.email())
-        cy.get('input[name="password"]').type('password')
-        cy.get('input[name="confirmPassword"]').type('password')
-        cy.get('button[class="cta-1"]').click()
+     it('navigates to the user details page if the data in the form is correct', () => {
+        cy.get(Sign_Up.emailField).type(faker.internet.email())
+        cy.get(Sign_Up.passwordField).type('password')
+        cy.get(Sign_Up.confirmPasswordField).type('password')
+        cy.get(Sign_Up.submitButton).click()
         
         //Completing Form
         cy.url().should('include', Cypress.env('signupForm'))
 
-        cy.get('input[name="firstname"]').type('Argus')
-        cy.get('input[name="lastname"]').type('Peregreen')
-        cy.get('input[name="dob"]').type('1990-10-10')
-        cy.get('span[class="label"]').contains('-- select an option --').type('male')
-        cy.get('input[name="flatNumber"]').type('270')
-        cy.get('input[name="phoneNumber"]').type('07857000000')
-        cy.get('input[name="houseNameNumber"]').type('Something')
-        cy.get('input[name="street"]').type('Something')
-        cy.get('input[name="city"]').type('London')
-        cy.get('input[name="postcode"]').type('SE186YN')
+        cy.get(Sign_Up.firstName).type('Argus')
+        cy.get(Sign_Up.lastName).type('Peregreen')
+        cy.get(Sign_Up.dob).type('1990-10-10')
+        cy.get(Sign_Up.gender).contains('-- select an option --').type('male')
+        cy.get(Sign_Up.flatNumber).type('270')
+        cy.get(Sign_Up.phoneNumber).type('07857000000')
+        cy.get(Sign_Up.houseName).type('Something')
+        cy.get(Sign_Up.street).type('Something')
+        cy.get(Sign_Up.city).type('London')
+        cy.get(Sign_Up.postcode).type('SE186YN')
 
-        cy.get('button[type="submit"]').click()
+        cy.get(Sign_Up.submitFormButton).click()
 
         //Completing Step 2
         cy.url().should('include', Cypress.env('signupSelectBroker'))
 
-        cy.get('span[class="d-flex"]').contains('add my broker later').click()
+        cy.get(Sign_Up.addBrokerLater).contains('add my broker later').click()
 
         //Completing Step 3
         cy.url().should('include', Cypress.env('signupLegal'))
 
-        cy.get('div[class="field--light__checkbox"]').click()
-        cy.get('button[class="button button--teal button--fit"]').contains('Continue').click({ force: true })
+        cy.get(Sign_Up.consentCheckbox).click()
+        cy.get(Sign_Up.continueButton).contains('Continue').click({ force: true })
 
         //Completing Step 4 - Risks
-        cy.get('div[class="field--light__checkbox"]').click()
-        cy.get('button[class="button button--teal button--fit"]').contains('Continue').click({ force: true })
+        cy.get(Sign_Up.consentCheckbox).click()
+        cy.get(Sign_Up.continueButton).contains('Continue').click({ force: true })
         
         //Vetting
         cy.url().should('include', Cypress.env('signupVetting'))
 
-        cy.get('span[class="inner-text"]').contains('Complete Personal Details').click()
+        cy.get(Sign_Up.checkDetailsButton).contains('Complete Personal Details').click()
         
         //Verifying Details
         cy.url().should('include', Cypress.env('signupPersonalDetails'))
