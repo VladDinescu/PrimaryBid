@@ -1,5 +1,6 @@
 var faker = require('faker')
 const Sign_Up = require('../fixtures/pages/signUpPage')
+const Header = require('../fixtures/pages/header')
 describe('Signup page', () => {
 
     beforeEach(() => {
@@ -10,7 +11,7 @@ describe('Signup page', () => {
             }
         })
 
-        cy.get('[href="'+ Cypress.env('signup')+'"]')
+        cy.get(Header.signUp)
             .contains('Sign up')
             .click()
     })

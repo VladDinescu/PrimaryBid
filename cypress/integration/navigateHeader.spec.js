@@ -1,3 +1,4 @@
+const Header = require('../fixtures/pages/header')
 describe('Navigate Website using the PrimaryBid Header', () => {
 
     before(() => {
@@ -11,7 +12,7 @@ describe('Navigate Website using the PrimaryBid Header', () => {
 
 
     it('Visits the About ', () => {
-        cy.get('[href="'+ Cypress.env('about') +'"]')
+        cy.get(Header.about)
         .contains('About Us')
         .click()
 
@@ -19,7 +20,7 @@ describe('Navigate Website using the PrimaryBid Header', () => {
     })
 
     it('Visits the News ', () => {
-        cy.get('[href="'+ Cypress.env('news') + '"]')
+        cy.get(Header.news)
             .contains('News')
             .click()
 
@@ -33,7 +34,7 @@ describe('Navigate Website using the PrimaryBid Header', () => {
     })
 
     it('Visits the FAQs', () => {
-        cy.get('[href="'+ Cypress.env('faqs') + '"]')
+        cy.get(Header.faqs)
             .contains('FAQs')
             .click()
 
