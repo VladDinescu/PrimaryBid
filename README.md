@@ -3,9 +3,9 @@
 
 
 ## Setup
-* Clone the repo
-* Install dependencies `npm install`
-* Create a cypress.env.json file inside the project root giving values to the following constants:
+1. Clone the repo
+2. Install dependencies `npm install`
+3. Create a cypress.env.json file inside the project root giving values to the following constants:
   * authUsername = `(ASK the PrimaryBid Employees - Environment Username)`
   * authPassword = `(ASK PrimaryBid Employees - Environment Password)`
   * baseURL = `(ASK PrimaryBid Employees - URL to test environment)`
@@ -24,14 +24,14 @@
   
 ## Running your tests
 1. Using the Cypress UI:
-- Open a terminal and type: `npm run cypress`
-- Press on any of the 3 test files to execute them
+    - Open a terminal and type: `npm run cypress`
+    - Press on any of the 3 test files to execute them
 
 2. Using CLI:
-- To run all tests: `npm run cypress:all`
-- To run all Navigation tests: `cypress:navigation`
-- To run all News tests: `npm run cypress:news`
-- To run all Sign Up tests: `npm run cypress:signUp`
+    - To run all tests: `npm run cypress:all`
+    - To run all Navigation tests: `cypress:navigation`
+    - To run all News tests: `npm run cypress:news`
+    - To run all Sign Up tests: `npm run cypress:signUp`
 
 ## Notes
 This Framework can still be refined:
