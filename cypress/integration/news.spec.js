@@ -20,4 +20,11 @@ describe('News page', () => {
 
     })
 
+    it('has articles under the All Articles section', () => {
+
+        cy.get('[class="card-grid margin--l"]').last()
+            .children().should('not.be.empty')
+
+    })
+
 })
