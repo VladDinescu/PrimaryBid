@@ -1,0 +1,23 @@
+{
+  "name": "cypress-tutorial-build-todo-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "serve": "json-server db.json",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+    "cypress": "cypress open",
+    "cypress:all": "cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^4.1.0"
+  },
+  "devDependencies": {
+    "cypress": "^4.11.0"
+  }
+}
